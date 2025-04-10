@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming E-Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: #fff;
+        }
+        .navbar {
+            background-color: #34495e;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #ecf0f1;
+        }
+        .navbar-brand:hover {
+            color: #bdc3c7;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background: #f4f6f7;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            border-radius: 15px 15px 0 0;
+        }
+        .card-title {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        .card .btn {
+            display: block;
+            margin: 10px auto 0;
+            background-color: #4ca1af;
+            border: none;
+        }
+        .card .btn:hover {
+            background-color: #3498db;
+        }
+        footer {
+            background-color: #34495e;
+            color: #ecf0f1;
+        }
+        .search-bar input {
+            border-radius: 20px;
+            border: 2px solid #4ca1af;
+        }
+        .search-bar .btn {
+            background-color: #4ca1af;
+            border: none;
+        }
+        .btn-all {
+            margin-top: 20px;
+            display: block;
+            background-color: #4ca1af;
+            border: none;
+        }
+        .btn-all:hover {
+            background-color: #3498db;
+        }
+        .all-subjects {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+      function api()
+      {
+        axios.get('https://codingshika.com/MYAPP/API/ebook.php?nm=') // Fetch data
+        .then(responce=>{
+
+          // Add subject data dynamically
+          document.getElementById("cl").innerHTML = responce.data.posts.post[2].NAME;
+          document.getElementById("java").innerHTML = responce.data.posts.post[5].NAME;
+          document.getElementById("linux").innerHTML = responce.data.posts.post[21].NAME;
+          document.getElementById("react").innerHTML = responce.data.posts.post[8].NAME;
+          document.getElementById("mdb").innerHTML = responce.data.posts.post[16].NAME;
+          document.getElementById("py").innerHTML = responce.data.posts.post[15].NAME;
+
+        })
+        .catch(error => console.error('Error fetching data:', error))
+      }
+
+      // Function to show all subjects
+      function showAllSubjects() {
+          document.getElementById("allSubjectsContainer").style.display = "block";
+      }
+    </script>
+</head>
+<body onload="api()">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Programming E-Book</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-light" href="#about">Subject</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4">Welcome to Programming E-Book</h1>
+            <p class="lead">Explore and learn programming languages and tools.</p>
+        </div>
+
+        <div class="search-bar text-center">
+            <input type="text" class="form-control w-50 mx-auto" placeholder="Search for books or topics...">
+            <button class="btn btn-primary mt-2">Search</button>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="C Programming">
+                    <div class="card-body">
+                        <h5 class="card-title">C Programming</h5>
+                        <p class="card-text">Learn the basics of C programming with our curated resources.</p>
+                        <a id="cl" href="https://codingshika.com/MYAPP/EBOOK/c.pdf" class="btn btn-primary">Open Book</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Java">
+                    <div class="card-body">
+                        <h5 class="card-title">Java</h5>
+                        <p class="card-text">Master Java programming and build robust applications.</p>
+                        <a id="java" href="https://codingshika.com/MYAPP/EBOOK/java.pdf" class="btn btn-primary">Open Book</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Linux">
+                    <div class="card-body">
+                        <h5 class="card-title">Linux</h5>
+                        <p class="card-text">Dive into the world of Linux and command-line tools.</p>
+                        <a id="linux" href="https://codingshika.com/MYAPP/EBOOK/linux.pdf" class="btn btn-primary">Open Book</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="React">
+                    <div class="card-body">
+                        <h5 class="card-title">React</h5>
+                        <p class="card-text">Learn React and build modern, dynamic web applications.</p>
+                        <a id="react" href="https://codingshika.com/MYAPP/EBOOK/react.pdf" class="btn btn-primary">Open Book</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="MongoDB">
+                    <div class="card-body">
+                        <h5 class="card-title">MongoDB</h5>
+                        <p class="card-text">Understand the basics of MongoDB, a NoSQL database.</p>
+                        <a id="mdb" href="https://codingshika.com/MYAPP/EBOOK/mongodb.pdf" class="btn btn-primary">Open Book</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Python">
+                    <div class="card-body">
+                        <h5 class="card-title">Python</h5>
+                        <p class="card-text">Learn Python programming for data analysis, AI, and more.</p>
+                        <a id="py" href="https://codingsh
